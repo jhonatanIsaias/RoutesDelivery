@@ -1,0 +1,13 @@
+<div>
+  <form>
+    <input type="text" [(ngModel)]="origem" placeholder="Origem" name="origem" required>
+    <input type="text" [(ngModel)]="destino" placeholder="Destino" name="destino" required>
+    <button type="submit">Obter Rota</button>
+  </form>
+  <google-map [center]="center" [zoom]="zoom">
+    @if (directionsResults$ | async; as directionsResults) {
+      <map-directions-renderer [directions]="directionsResults" />
+    }
+  </google-map>
+</div>
+<router-outlet />
