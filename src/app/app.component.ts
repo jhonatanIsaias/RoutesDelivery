@@ -15,18 +15,28 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.component.css'
 })
 export class AppComponent  {
-  origem: string = '';
-  destino: string = '';
+  rua: string = '';
+  cep: string = '';
+  cidade:string= '';
+  numero:string= '';
+  ruaDestino:string= '';
+  cidadeDestino:string= '';
+  numeroDestino:string= '';
+  cepDestino:string= '';
   directionsResults$:Observable<google.maps.DirectionsResult | undefined> | undefined;
   center: google.maps.LatLngLiteral = { lat: -23.55052, lng: -46.633308 }; // Localização inicial
   zoom = 14;
   constructor(private mapsService: MapsServiceService, private mapDirectionsService: MapDirectionsService) {
+
+  }
+
+  getRoutes(){
     this.mapsService.getRoutes().subscribe({
       next: (response) => {
         const bounds = response.routes[0].bounds;
         const request: google.maps.DirectionsRequest = {
-          destination: { lat: bounds.northeast.lat, lng: bounds.northeast.lng },
-          origin: { lat: bounds.southwest.lat, lng: bounds.southwest.lng },
+          destination:{ lat: bounds.southwest.lat, lng: bounds.southwest.lng },
+          origin: { lat: bounds.northeast.lat, lng: bounds.northeast.lng },
           travelMode: google.maps.TravelMode.DRIVING
         };
 
@@ -37,6 +47,5 @@ export class AppComponent  {
       }
     });
   }
-
 
 }

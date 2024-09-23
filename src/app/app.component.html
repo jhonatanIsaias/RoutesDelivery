@@ -1,13 +1,32 @@
-<div>
-  <form>
-    <input type="text" [(ngModel)]="origem" placeholder="Origem" name="origem" required>
-    <input type="text" [(ngModel)]="destino" placeholder="Destino" name="destino" required>
-    <button type="submit">Obter Rota</button>
-  </form>
-  <google-map [center]="center" [zoom]="zoom">
-    @if (directionsResults$ | async; as directionsResults) {
-      <map-directions-renderer [directions]="directionsResults" />
-    }
+<div class="container">
+  <!-- Título do formulário de origem -->
+  <div class="formulario-origem">
+    <h2>Origem</h2>
+    <form>
+      <input type="text" [(ngModel)]="rua" placeholder="Rua" name="rua" required>
+      <input type="text" [(ngModel)]="cidade" placeholder="Cidade" name="cidade" required>
+      <input type="text" [(ngModel)]="numero" placeholder="Número" name="numero" required>
+      <input type="text" [(ngModel)]="cep" placeholder="CEP" name="cep" required>
+      <button type="submit" (click)="getRoutes()">Obter Rota</button>
+    </form>
+  </div>
+
+  <!-- Título do formulário de destino -->
+  <div class="formulario-destino">
+    <h2>Destino</h2>
+    <form>
+      <input type="text" [(ngModel)]="ruaDestino" placeholder="Rua" name="ruaDestino" required>
+      <input type="text" [(ngModel)]="cidadeDestino" placeholder="Cidade" name="cidadeDestino" required>
+      <input type="text" [(ngModel)]="numeroDestino" placeholder="Número" name="numeroDestino" required>
+      <input type="text" [(ngModel)]="cepDestino" placeholder="CEP" name="cepDestino" required>
+      <button type="submit" (click)="getRoutes()">Obter Rota</button>
+    </form>
+  </div>
+
+  <!-- Google Maps -->
+  <google-map class="google-map" [center]="center" [zoom]="zoom">
+    <map-directions-renderer *ngIf="directionsResults$ | async as directionsResults" [directions]="directionsResults"></map-directions-renderer>
   </google-map>
 </div>
-<router-outlet />
+
+<router-outlet></router-outlet>
