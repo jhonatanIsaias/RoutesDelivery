@@ -3,11 +3,9 @@
   <div class="formulario-origem">
     <h2>Origem</h2>
     <form>
-      <input type="text" [(ngModel)]="rua" placeholder="Rua" name="rua" required>
+      <input type="text" [(ngModel)]="endereco" placeholder="Endereco" name="endereco" required>
       <input type="text" [(ngModel)]="cidade" placeholder="Cidade" name="cidade" required>
-      <input type="text" [(ngModel)]="numero" placeholder="Número" name="numero" required>
-      <input type="text" [(ngModel)]="cep" placeholder="CEP" name="cep" required>
-      <button type="submit" (click)="getRoutes()">Obter Rota</button>
+      <input type="text" [(ngModel)]="estado" placeholder="Estado" name="estado" required>
     </form>
   </div>
 
@@ -15,10 +13,9 @@
   <div class="formulario-destino">
     <h2>Destino</h2>
     <form>
-      <input type="text" [(ngModel)]="ruaDestino" placeholder="Rua" name="ruaDestino" required>
+      <input type="text" [(ngModel)]="enderecoDestino" placeholder="EnderecoDestino" name="enderecoDestino" required>
       <input type="text" [(ngModel)]="cidadeDestino" placeholder="Cidade" name="cidadeDestino" required>
-      <input type="text" [(ngModel)]="numeroDestino" placeholder="Número" name="numeroDestino" required>
-      <input type="text" [(ngModel)]="cepDestino" placeholder="CEP" name="cepDestino" required>
+      <input type="text" [(ngModel)]="estadoDestino" placeholder="EstadoDestino" name="estadoDestino" required>
       <button type="submit" (click)="getRoutes()">Obter Rota</button>
     </form>
   </div>

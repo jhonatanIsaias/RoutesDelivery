@@ -6,6 +6,7 @@ import { NgIf } from '@angular/common';
 import { MapsServiceService } from './services/maps-service.service';
 import { map, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { FormGroup, FormControl,ReactiveFormsModule, Validators,AbstractControl,ValidationErrors} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -15,14 +16,16 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.component.css'
 })
 export class AppComponent  {
-  rua: string = '';
-  cep: string = '';
+  endereco: string = '';
   cidade:string= '';
-  numero:string= '';
-  ruaDestino:string= '';
+  estado:string= '';
+  enderecoDestino:string= '';
   cidadeDestino:string= '';
-  numeroDestino:string= '';
-  cepDestino:string= '';
+  estadoDestino:string= '';
+
+
+
+
   directionsResults$:Observable<google.maps.DirectionsResult | undefined> | undefined;
   center: google.maps.LatLngLiteral = { lat: -23.55052, lng: -46.633308 }; // Localização inicial
   zoom = 14;
@@ -30,8 +33,24 @@ export class AppComponent  {
 
   }
 
+  dataOrigin() {
+    const originRua = this.endereco.trim().split(' ').join('+');
+    const origin = `${originRua},+${this.cidade.trim()},+${this.estado.trim()}`;
+    console.log(origin);
+    return origin;
+  }
+
+  dataDestination() {
+    const destinationRua = this.enderecoDestino.trim().split(' ').join('+');
+    const destination = `${destinationRua},+${this.cidadeDestino.trim()},+${this.estadoDestino.trim()}`;
+    console.log(destination);
+    return destination;
+  }
+
   getRoutes(){
-    this.mapsService.getRoutes().subscribe({
+    const origin = this.dataOrigin();
+    const destination = this.dataDestination();
+    this.mapsService.getRoutes(origin,destination).subscribe({
       next: (response) => {
         const bounds = response.routes[0].bounds;
         const request: google.maps.DirectionsRequest = {
