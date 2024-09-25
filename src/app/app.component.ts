@@ -6,7 +6,6 @@ import { NgIf } from '@angular/common';
 import { MapsServiceService } from './services/maps-service.service';
 import { map, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { FormGroup, FormControl,ReactiveFormsModule, Validators,AbstractControl,ValidationErrors} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -17,11 +16,17 @@ import { FormGroup, FormControl,ReactiveFormsModule, Validators,AbstractControl,
 })
 export class AppComponent  {
   endereco: string = '';
+  bairro:string='';
   cidade:string= '';
   estado:string= '';
+  cep:string='';
+  numero:number | null = null;
   enderecoDestino:string= '';
+  bairroDestino:string='';
   cidadeDestino:string= '';
   estadoDestino:string= '';
+  cepDestino='';
+  numeroDestino:number | null = null;
 
 
 
@@ -35,14 +40,15 @@ export class AppComponent  {
 
   dataOrigin() {
     const originRua = this.endereco.trim().split(' ').join('+');
-    const origin = `${originRua},+${this.cidade.trim()},+${this.estado.trim()}`;
+    const origin = `${originRua},+${this.numero},Bairro+${this.bairro.trim()},+${this.cidade.trim()},+${this.estado.trim()},Brasil,+${this.cep.trim()}`;
     console.log(origin);
     return origin;
   }
 
   dataDestination() {
-    const destinationRua = this.enderecoDestino.trim().split(' ').join('+');
-    const destination = `${destinationRua},+${this.cidadeDestino.trim()},+${this.estadoDestino.trim()}`;
+    const destinationRua = this.enderecoDestino
+    .trim().split(' ').join('+');
+    const destination = `${destinationRua},+${this.numeroDestino},Bairro+${this.bairroDestino.trim()},+${this.cidadeDestino.trim()},+${this.estadoDestino.trim()},Brasil,+${this.cepDestino.trim()}`;
     console.log(destination);
     return destination;
   }

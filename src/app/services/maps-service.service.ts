@@ -9,7 +9,7 @@ export class MapsServiceService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getRoutes(origin: string , destination:string):Observable<any>{
+  getRoutes(origin: string|null , destination:string|null):Observable<any>{
     return this.httpClient.get<any>(`http://localhost:8080/api/route?origin=${origin}&destination=${destination}`);
   }
 }

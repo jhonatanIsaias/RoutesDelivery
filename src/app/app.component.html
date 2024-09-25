@@ -5,7 +5,10 @@
     <form>
       <input type="text" [(ngModel)]="endereco" placeholder="Endereco" name="endereco" required>
       <input type="text" [(ngModel)]="cidade" placeholder="Cidade" name="cidade" required>
+      <input type="text" [(ngModel)]="bairro" placeholder="Bairro" name="bairro" required>
       <input type="text" [(ngModel)]="estado" placeholder="Estado" name="estado" required>
+      <input type="text" [(ngModel)]="cep" placeholder="Cep" name="cep" required>
+      <input type="text" [(ngModel)]="numero" placeholder="Numero" name="numero" required>
     </form>
   </div>
 
@@ -15,7 +18,10 @@
     <form>
       <input type="text" [(ngModel)]="enderecoDestino" placeholder="EnderecoDestino" name="enderecoDestino" required>
       <input type="text" [(ngModel)]="cidadeDestino" placeholder="Cidade" name="cidadeDestino" required>
+      <input type="text" [(ngModel)]="bairroDestino" placeholder="BairroDestino" name="bairroDestino" required>
       <input type="text" [(ngModel)]="estadoDestino" placeholder="EstadoDestino" name="estadoDestino" required>
+      <input type="text" [(ngModel)]="cepDestino" placeholder="cepDestino" name="cepDestino" required>
+      <input type="text" [(ngModel)]="numeroDestino" placeholder="NumeroDestino" name="numeroDestino" required>
       <button type="submit" (click)="getRoutes()">Obter Rota</button>
     </form>
   </div>
